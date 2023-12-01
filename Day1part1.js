@@ -1,5 +1,23 @@
 // Advent of Code, Day 1 (part 1):
 
+const formattedInput = input.split("\n");
+
+const calibratedValues = formattedInput.map((entry) => {
+  const value = entry.match(/[0-9]/g);
+  return value.length == 1 ? value + value : value[0] + value[value.length - 1];
+});
+
+calibratedValues.reduce((acc, val) => Number(acc) + Number(val));
+
+// Result: 54390
+
+// Shorthand:
+input.split("\n").map((entry) => {
+  const value = entry.match(/[0-9]/g);
+  return value.length == 1 ? value + value : value[0] + value[value.length - 1];
+}).reduce((acc, val) => Number(acc) + Number(val));
+
+
 const input = `9vxfg
 19qdlpmdrxone7sevennine
 1dzntwofour9nineffck
@@ -1000,20 +1018,3 @@ rdkfxsix4tnmndhnxnv86
 two4dddpmrhh7fourthreeeight9
 slhdsxngfxszspppxxfftmxlptzhtwovp1
 4vmzcrhtdvnm6zfive5pkbhcxj`
-
-const formattedInput = input.split("\n");
-
-const calibratedValues = formattedInput.map((entry) => {
-  const value = entry.match(/[0-9]/g);
-  return value.length == 1 ? value + value : value[0] + value[value.length - 1];
-});
-
-calibratedValues.reduce((acc, val) => Number(acc) + Number(val));
-
-// Result: 54390
-
-// Shorthand:
-input.split("\n").map((entry) => {
-  const value = entry.match(/[0-9]/g);
-  return value.length == 1 ? value + value : value[0] + value[value.length - 1];
-}).reduce((acc, val) => Number(acc) + Number(val));
