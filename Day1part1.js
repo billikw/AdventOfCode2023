@@ -4,7 +4,7 @@ const formattedInput = input.split("\n");
 
 const calibratedValues = formattedInput.map((entry) => {
   const value = entry.match(/[0-9]/g);
-  return value.length == 1 ? value + value : value[0] + value[value.length - 1];
+  return value[0] + value[value.length - 1];
 });
 
 calibratedValues.reduce((acc, val) => Number(acc) + Number(val));
