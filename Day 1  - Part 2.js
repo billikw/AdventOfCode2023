@@ -3,49 +3,55 @@
 const formattedInput = input.split("\n");
 
 const calibratedValues = formattedInput.map((input) => {
-		const conversion = {
-			"one": "1", 
-			"two": "2",
-			"three": "3",
-			"four": "4",
-			"five": "5",
-			"six": "6",
-			"seven": "7",
-			"eight": "8",
-			"nine": "9"
-		};
-		let tempString = "";
-		let lastValidString = "";
-		const result = []
-		const data = input.split('');
+  const conversion = {
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
+  let tempString = "";
+  let lastValidString = "";
+  const result = [];
+  const data = input.split("");
 
-		data.forEach(i => {
-				if (Number(i)) { 
-						result.push(i);
-						lastValidString = "";
-				} else {
-					tempString += i
-					const conversionCheck = conversion[`${lastValidString.substring(lastValidString.length-1)}${tempString}`];
+  data.forEach((i) => {
+    if (Number(i)) {
+      result.push(i);
+      lastValidString = "";
+    } else {
+      tempString += i;
+      const conversionCheck =
+        conversion[
+          `${lastValidString.substring(
+            lastValidString.length - 1
+          )}${tempString}`
+        ];
 
-					if (lastValidString !== "" && conversionCheck) {
-						result.push(conversionCheck);
-						tempString = ""
-					}
+      if (lastValidString !== "" && conversionCheck) {
+        result.push(conversionCheck);
+        tempString = "";
+      }
 
-					Object.keys(conversion).forEach(key => {
-						if (tempString.includes(key)) {
-							lastValidString = key
-							result.push(conversion[lastValidString])
-							tempString = ""
-						}	
-					}) 
-				}
-			})
-  
-		return result[0] + result[result.length-1]
-	});
+      Object.keys(conversion).forEach((key) => {
+        if (tempString.includes(key)) {
+          lastValidString = key;
+          result.push(conversion[lastValidString]);
+          tempString = "";
+        }
+      });
+    }
+  });
+
+  return result[0] + result[result.length - 1];
+});
 
 calibratedValues.reduce((acc, val) => Number(acc) + Number(val));
+
 
 // Result: 54277.
 
